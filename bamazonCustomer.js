@@ -19,7 +19,7 @@ connection.connect(function (err) {
 });
 
 
-
+//the questions that the user needs to answer
 function productInfo() {
     inquirer.prompt([{
         type: "input",
@@ -34,11 +34,25 @@ function productInfo() {
         message: "How many units of this product would you like to buy?",
         filter: Number
     }
-    ])
+    ]).then(function (res) {
+        var item2 = res.product;
+        var quantity2 = res.quantity;
 
+        connection.query("SELECT * FROM products WHERE ?", { item_id: item2 },
+            function (err.response) {
+                if (err) throw err;
+
+                if (response.length === 0) {
+                    console.log("ERROR: Select a valid Item ID from the products list.");
+                    showAllProducts();
+                } else {
+
+                }
+            })
+    })
 }
 
-
+//displaying the table
 function showAllProducts() {
     connection.query("SELECT * FROM products", function (err, res) {
         for (var i = 0; i < res.length; i++) {
