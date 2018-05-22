@@ -79,3 +79,21 @@ function showAllProducts() {
         productInfo()
     });
 }
+
+function keepShopping() {
+    inquirer.prompt([
+        {
+            type: "confirm",
+            message: "Would you like to keep shipping?",
+            name: "confirm"
+        }
+    ]).then(function (res) {
+        if (res.confirm) {
+            console.log("-----------------");
+            showAllProducts();
+        } else {
+            console.log("Thank you for shopping with Bamazon");
+            connection.end();
+        }
+    })
+}
