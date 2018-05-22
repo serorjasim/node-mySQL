@@ -61,7 +61,8 @@ function productInfo() {
                             keepShopping();
                         })
                     } else {
-
+                        console.log("Sorry, item's not in stock to place your order.\n" + "Please change your.\n" + "Your item was " + productRes.product_name + " and it has " + productRes.stock_quantity + " left in stock.");
+                        keepShopping();
                     }
                 }
             })
