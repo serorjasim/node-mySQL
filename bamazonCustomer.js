@@ -50,16 +50,18 @@ function productInfo() {
                     if (quantity2 <= productRes.stock_quantity) {
                         console.log("Your product is in stock, placing your order homie!");
 
-                        var updateInventory = "UPDATE products SET stock_quantity= " + (product.stock_quantity - quantity2) + " WHERE item_id = " + item2;
+                        console.log("Your order has been placed! Your total is $" + productRes.price * quantity2);
+                        console.log("Thank you for shopping with us!");
+                        console.log("-------------------------\n");
+
+
+
+                        var updateInventory = "UPDATE products SET stock_quantity = " + (productRes.stock_quantity - quantity2) + " WHERE item_id = " + item2;
 
                         connection.query(updateInventory, function (err, data) {
                             if (err) throw err;
-
-                            console.log("Your order has been placed! Your total is $" + productRes.price * quantity2);
-                            console.log("Thank you for shopping with us!");
-                            console.log("-------------------------\n");
                             keepShopping();
-                        })
+                        });
                     } else {
                         console.log("Sorry, item's not in stock to place your order.\n" + "Please change your.\n" + "Your item was " + productRes.product_name + " and it has " + productRes.stock_quantity + " left in stock.");
                         keepShopping();
@@ -84,7 +86,7 @@ function keepShopping() {
     inquirer.prompt([
         {
             type: "confirm",
-            message: "Would you like to keep shipping?",
+            message: "Would you like to keep shopping?",
             name: "confirm"
         }
     ]).then(function (res) {
