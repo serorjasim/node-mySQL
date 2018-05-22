@@ -52,9 +52,17 @@ function productInfo() {
 
                         var updateInventory = "UPDATE products SET stock_quantity= " + (product.stock_quantity - quantity2) + " WHERE item_id = " + item2;
 
+                        connection.query(updateInventory, function (err, data) {
+                            if (err) throw err;
 
-                    })
-    }
+                            console.log("Your order has been placed! Your total is $" + productRes.price * quantity2);
+                            console.log("Thank you for shopping with us!");
+                            console.log("-------------------------\n");
+                            keepShopping();
+                        })
+                    } else {
+
+                    }
                 }
             })
     })
