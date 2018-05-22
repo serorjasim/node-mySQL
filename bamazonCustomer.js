@@ -46,7 +46,15 @@ function productInfo() {
                     console.log("ERROR: Select a valid Item ID from the products list.");
                     showAllProducts();
                 } else {
+                    var productRes = response[0];
+                    if (quantity2 <= productRes.stock_quantity) {
+                        console.log("Your product is in stock, placing your order homie!");
 
+                        var updateInventory = "UPDATE products SET stock_quantity= " + (product.stock_quantity - quantity2) + " WHERE item_id = " + item2;
+
+
+                    })
+    }
                 }
             })
     })
