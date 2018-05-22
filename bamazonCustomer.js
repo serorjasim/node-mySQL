@@ -39,7 +39,7 @@ function productInfo() {
         var quantity2 = res.quantity;
 
         connection.query("SELECT * FROM products WHERE ?", { item_id: item2 },
-            function (err.response) {
+            function (err, response) {
                 if (err) throw err;
 
                 if (response.length === 0) {
